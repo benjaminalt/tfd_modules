@@ -143,7 +143,7 @@ target_link_libraries(tfd_search ${catkin_LIBRARIES} tfd_module_api tfd_opl_inte
 #add_executable(opl_translate_domain downward/opl/opl_translate_domain.cpp)
 #target_link_libraries(opl_translate_domain tfd_opl dl)
 
-set (CMAKE_CXX_FLAGS "-Wno-sign-compare -ansi -O3")
+set (CMAKE_CXX_FLAGS "-Wno-sign-compare -ansi -O3 -std=c++0x ${CMAKE_CXX_FLAGS}")
 #add_compile_flags(tfd_preprocess "-Wno-sign-compare -ansi -pedantic")
 #add_compile_flags(tfd_search "-Wno-sign-compare -ansi ")
 
