@@ -73,7 +73,7 @@ void build_DTGs(const vector<Variable *> &var_order,
                     int intermediate_value = pre_posts_to_add[k].first.post;
                     // compress original transition!
                     pre_posts_to_add[k].first.post = pre_post_end[j].post;
-                    pre_posts_to_add[k].second = end;
+                    pre_posts_to_add[k].second = trans_type::end;
                     pre_post_overwritten = true;
                     // If the intermediate value is something meaningful (i.e. unequal to
                     // <none_of_those>), we add an addtional start transition with the
@@ -82,13 +82,13 @@ void build_DTGs(const vector<Variable *> &var_order,
                         pre_posts_to_add.push_back(make_pair(Operator::PrePost(
                                         pre_posts_to_add[k].first.var,
                                         pre_posts_to_add[k].first.pre,
-                                        intermediate_value), end));
+                                        intermediate_value), trans_type::end));
                     }
                     break;
                 }
             }
             if(!pre_post_overwritten) {
-                pre_posts_to_add.push_back(make_pair(pre_post_end[j],end));
+                pre_posts_to_add.push_back(make_pair(pre_post_end[j],trans_type::end));
             }
             pre_post_overwritten = false;
         }
@@ -135,7 +135,7 @@ void build_DTGs(const vector<Variable *> &var_order,
                 int foperator = static_cast<int>(numerical_effs_end[j].fop);
                 int right_var = numerical_effs_end[j].foperand->get_level();
                 transition_graphs[var_level]->addTransition(foperator, right_var, op,
-                        i, end, var_order);
+                        i, trans_type::end, var_order);
             }
         }
     }

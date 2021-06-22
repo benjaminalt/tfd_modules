@@ -52,7 +52,7 @@ void DomainTransitionGraphSymb::addTransition(int from, int to,
     const vector<Operator::PrePost> &pre_post_start = op.get_pre_post_start();
     const vector<Operator::PrePost> &pre_post_end = op.get_pre_post_end();
 
-    assert(type == compressed || type == end || type == start);
+    assert(type == trans_type::compressed || type == trans_type::end || type == trans_type::start);
 
     //  if(type == compressed) {
     // insert all at-start conditions
@@ -294,7 +294,7 @@ void DomainTransitionGraphSymb::dump() const {
         for(int j = 0; j < vertices[i].size(); j++) {
             const Transition &trans = vertices[i][j];
             cout << "    " << "To value " << trans.target << endl;
-            if(trans.type == start || trans.type == end || trans.type == compressed)
+            if(trans.type == trans_type::start || trans.type == trans_type::end || trans.type == trans_type::compressed)
                 cout << "     duration " << trans.duration.op << " "
                     << trans.duration.var->get_level() << endl;
             else
@@ -315,17 +315,17 @@ void DomainTransitionGraphSymb::generate_cpp_input(ostream &outfile) const {
             outfile << trans.target << endl; // target of transition
             outfile << trans.op << endl; // operator doing the transition
             //duration:
-            if(trans.type == compressed)
+            if(trans.type == trans_type::compressed)
                 outfile << "c" << endl;
-            else if(trans.type == start)
+            else if(trans.type == trans_type::start)
                 outfile << "s" << endl;
-            else if(trans.type == end)
+            else if(trans.type == trans_type::end)
                 outfile << "e" << endl;
             else {
-                assert(trans.type==ax_rel);
+                assert(trans.type==trans_type::ax_rel);
                 outfile << "a" << endl;
             }
-            if(trans.type == start || trans.type == end || trans.type == compressed)
+            if(trans.type == trans_type::start || trans.type == trans_type::end || trans.type == trans_type::compressed)
                 outfile << trans.duration.op << " " << trans.duration.var->get_level()
                     << endl;
             // calculate number of important prevail conditions

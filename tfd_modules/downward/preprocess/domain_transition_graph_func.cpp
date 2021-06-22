@@ -128,9 +128,9 @@ void DomainTransitionGraphFunc::dump() const {
         for(int k = 0; k < trans.condition.size(); k++)
             cout << "  if " << std::tr1::get<0>(trans.condition[k])->get_name()
                 << " = " << std::tr1::get<1>(trans.condition[k]) << " (" << std::tr1::get<2>(trans.condition[k]) << ")" << endl;
-        if(trans.type == start)
+        if(trans.type == trans_type::start)
             cout << "  start effect" << endl;
-        else if(trans.type == end)
+        else if(trans.type == trans_type::end)
             cout << "  end effect" << endl;
         else
             cout << "   " << "axiom" << endl;

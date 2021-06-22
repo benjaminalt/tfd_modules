@@ -5,11 +5,15 @@
 #include <QThread>
 #include <QSignalMapper>
 #include <QSettings>
+
 #include "ui_ContinualPlanningMonitorWindow.h"
+
+#ifndef Q_MOC_RUN
 #include "continual_planning_msgs/ContinualPlanningStatus.h"
 #include "continual_planning_msgs/SetContinualPlanningControl.h"
 #include "continual_planning_msgs/ExecuteActionDirectly.h"
 #include <ros/ros.h>
+#endif
 
 class ExecuteActionThread : public QThread
 {

@@ -2,7 +2,11 @@
 #include <QInputDialog>
 #include <QAction>
 #include <QList>
+
+#ifndef Q_MOC_RUN
 #include <boost/thread.hpp>
+#endif
+
 #include "ContinualPlanningMonitorWindow.h"
 #include "continual_planning_msgs/TemporalAction.h"
 

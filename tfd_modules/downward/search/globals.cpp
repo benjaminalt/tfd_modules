@@ -337,13 +337,13 @@ istream& operator>>(istream &is, trans_type &tt)
     string strVal;
     is >> strVal;
     if(!strVal.compare("s"))
-        tt = start;
+        tt = trans_type::start;
     else if(!strVal.compare("e"))
-        tt = end;
+        tt = trans_type::end;
     else if(!strVal.compare("c"))
-        tt = compressed;
+        tt = trans_type::compressed;
     else if(!strVal.compare("a"))
-        tt = ax;
+        tt = trans_type::ax;
     else {
         cout << strVal << " was read." << endl;
         assert(false);
@@ -354,16 +354,16 @@ istream& operator>>(istream &is, trans_type &tt)
 ostream& operator<<(ostream &os, const trans_type &tt)
 {
     switch (tt) {
-        case start:
+        case trans_type::start:
             os << "s";
             break;
-        case end:
+        case trans_type::end:
             os << "e";
             break;
-        case compressed:
+        case trans_type::compressed:
             os << "c";
             break;
-        case ax:
+        case trans_type::ax:
             os << "a";
         default:
             // cout << "Error: Encountered binary operator " << bop << "." << endl;

@@ -390,7 +390,7 @@ void LocalProblemDiscrete::build_nodes_for_goal()
         DomainTransitionGraph *goal_dtg = g_transition_graphs[goal_var];
         goals.push_back(LocalAssignment(goal_dtg, i, goal_value, end_cond));
     }
-    ValueTransitionLabel *label = new ValueTransitionLabel(-1, goals, end);
+    ValueTransitionLabel *label = new ValueTransitionLabel(-1, goals, trans_type::end);
     LocalProblemNodeDiscrete *target = &nodes[1];
     LocalProblemNodeDiscrete *start = &nodes[0];
     assert(label);
